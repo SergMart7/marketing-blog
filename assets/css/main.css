@@ -1,0 +1,54 @@
+* {
+    /* colour variables */
+    --colour1: #000000;
+    --colour2: #ffffff;
+    margin: 0;
+}
+
+.container {
+    flex: auto;
+}
+
+form {
+    padding-bottom: 25px;
+    padding-left: 25px;
+}
+
+h4 {
+    padding-left: 25px;
+}
+
+/* HEADER  */
+
+header {
+    padding: 25px;
+    border-bottom: solid var(--colour1);
+}
+
+#theme {
+    position: absolute;
+    margin-top: -10px;
+    
+}
+
+/* LIGHT MODE  */
+.light {
+    background-color: var(--colour2);
+    color: var(--colour1);
+}
+
+/* DARK MODE */
+
+.dark {
+    background-color: var(--colour1);
+    color: var(--colour2);
+}
+
+.dark header {
+    border-bottom: solid var(--colour2);
+}
+/* BODY ELEMENTS */
+
+body {
+    flex-wrap: wrap;
+}
