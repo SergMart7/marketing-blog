@@ -1,53 +1,47 @@
-// THEME SWITCHER
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('blog-form');
+    const errorMessage = document.getElementById('error-message');
 
-const themeSwitcher = document.querySelector('#theme');
-const container = document.querySelector('.container');
+        // FUNCTION THAT COLLECTS ALL INPUT DATA
 
-// FORM ELEMENTS
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const title = document.getElementById('title').value.trim();
+        const content = document.getElementById('content').value.trim();
 
-const userName = document.querySelector('#userName');
-const title = document.querySelector('#titleSquare');
-const comment = document.querySelector('#msg');
-const submitButton = document.querySelector('#submit');
+        if (!username || !title || !content) {
+            errorMessage.textContent = "All fields are required!";
+            return;
+        }
 
-// DEFAULT COLOUR IS LIGHT MODE
+        // SETS INPUT DATA IN LOCAL STORAGE
 
-let mode = 'light';
+        const blogPost = { username, title, content };
+        let blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        blogPosts.push(blogPost);
+        localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
+        window.location.href = 'blog.html';
+    });
 
-themeSwitcher.addEventListener('click', function() {
-    if (mode === 'light') {
-        mode = 'dark';
-        container.classList.remove('light');
-        container.classList.add('dark');
-    } else {
-        mode = 'light';
-        container.classList.remove('dark');
-        container.classList.add('light');
+        // FUNCIONS THAT HANDLE DARK THEME 
+
+    const toggleButton = document.getElementById('toggle-theme');
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        toggleButton.textContent = 'Light Mode';
     }
-});
 
-submitButton.addEventListener('click', function(event) {
-    event.preventDefault();
+        //  KEEPS PREVIOUS THEME IN LOCAL STORAGE SO USER DOESN'T HAVE TO CONSTANTLY CHANGE
 
-    // CREATE A POST UPON OBJECT SUBMISSION
-
-    const post = {
-        user: userName.value.trim(),
-        title: title.value.trim(),
-        content: comment.value.trim(),
-    };
-
-    // SETS IN LOCAL STORAGE
-
-    localStorage.setItem('post', JSON.stringify(post));
-
-    // CLEARS THE FORM
-
-    userName.value = '';
-    title.value = '';
-    comment.value = '';
-
-    //  DISPLAY CONFIRMATION OF POST BEING SAVED :D
-
-    alert('Post saved!');
+    toggleButton.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            toggleButton.textContent = 'Light Mode';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            toggleButton.textContent = 'Dark Mode';
+            localStorage.setItem('theme', 'light');
+        }
+    });
 });
