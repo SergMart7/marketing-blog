@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <title>Blog Starter Page</title>
+    <title>Personal Blog - Submit Post</title>
+    <link rel="stylesheet" href="./assets/css/stylesheet.css">
 </head>
 <body>
-    <section class="container">
     <header>
-        <label id="switcher">
-        <input type="checkbox" id="theme">
-    </label>
+        <h1>Submit a Blog Post</h1>
+        <button id="toggle-theme">Dark Mode</button>
     </header>
-        <div>
-        <img src="./assets/images/Quebec.jpeg" alt="Quebeqois skyline">
-    </div>
-    <div>
-        <h2><strong>What's on your mind?</strong></h2>
-    </div>
-    <form class="blogPreset">
-        <h4>User Name</h4>
-        <input type="text" autocomplete="User Name" placeholder="User Name" id="userName">
-        <h4>Title</h4>
-        <input type="text" autocomplete="Title" placeholder="Title" id="titleSquare">
-        <h4>Content</h4>
-        <input type="text" autocomplete="Content" placeholder="Comments..." id="msg">
-        <br>
-        <br>
-        <button id="submit">SUBMIT</button>
-    </form>
-    </section>
+    <main>
+        <div class="form-container">
+            <img src="./assets/images/Quebec.jpeg" alt="Quebecois skyline" class="form-image">
+
+            <!-- FORM BELOW IS USED TO COLLECT DATA VIA JS COMMANDS -->
+            
+            <form id="blog-form">
+                <h2>What's on your mind?</h2>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+                <label for="content">Content:</label>
+                <textarea id="content" name="content" required></textarea>
+                <button type="submit">Submit</button>
+                <p id="error-message"></p>
+            </form>
+        </div>
+    </main>
+    <footer>
+       <h2>Made with ❤️</h2>
+    </footer>
     <script src="./assets/javascript/main.js"></script>
 </body>
 </html>
